@@ -132,7 +132,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                       },
                       child: Container(
 
-                        child: Text('Sign Up TEMP',
+                        child: Text('Sign Up',
                           style: TextStyle(fontWeight: FontWeight.bold),),
                         padding: EdgeInsets.symmetric(vertical: 8),
 
