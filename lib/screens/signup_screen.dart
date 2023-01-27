@@ -117,7 +117,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children:<Widget> [
                     Container(
-                      child: Text('Dont have an account?'),
+                      child: Text('Dont have an account'),
                       padding: EdgeInsets.symmetric(vertical: 8),
 
                     ),
