@@ -26,7 +26,7 @@ class MyApp extends StatelessWidget {
       ),
       title: 'Flutter Demo',
       // home: const ResponsiveLayout(mobileScreenLayout:mobileScreenLayout(),webScreenLayout:webScreenLayout() ,),
-    home: SignUpScreen(),
+    home: LoginScreen(),
     );
   }
 }
