@@ -21,6 +21,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
   final TextEditingController bioController= TextEditingController();
   final TextEditingController userController= TextEditingController();
   Uint8List? image;
+  bool isLoading = false;
 
   @override
   void dispose() {
@@ -38,6 +39,22 @@ class _SignUpScreenState extends State<SignUpScreen> {
       image = im;
 
     });
+  }
+  void signUpUser()async{
+    setState(() {
+      isLoading=true;
+    });
+    String res = await AuthMethods().signUpUser(email: emailController.text,
+        username: userController.text,
+        password: passController.text,
+        bio: bioController.text,
+        file: image!);
+    setState(() {
+      isLoading = false;
+    });
+    if(res !="success"){
+      showSnackBar(res, context);
+    }
   }
   @override
   Widget build(BuildContext context) {
@@ -98,8 +115,9 @@ class _SignUpScreenState extends State<SignUpScreen> {
                 ),
                 //bottom login
                 InkWell(
+                  onTap: signUpUser,
                   child: Container(
-                    child: const Text('Log In'),
+                    child:isLoading? const Center(child: CircularProgressIndicator(color: primaryColor,),): const Text('Sign Up'),
                     width: double.infinity,
                     alignment:  Alignment.center,
                     padding: EdgeInsets.symmetric(vertical: 12),
@@ -122,14 +140,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
 
                     ),
                     GestureDetector(
-                      onTap: () async {
-                        String res = await AuthMethods().signUpUser(email: emailController.text,
-                            username: userController.text,
-                            password: passController.text,
-                            bio: bioController.text,
-                            file: image!);
-
-                      },
+                      onTap: signUpUser,
                       child: Container(
 
                         child: Text('Sign Up',
